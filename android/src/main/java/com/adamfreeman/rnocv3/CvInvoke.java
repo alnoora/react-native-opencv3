@@ -177,8 +177,10 @@ class CvInvoke {
 					   }
 				   }
 				   else {
-                       arrMatIndex = i - 1;
-                       dstMatIndex = matIndex;
+                        // Ninjar
+                        // 带返回值的函数会出问题
+                       // arrMatIndex = i - 1;
+                       // dstMatIndex = matIndex;
 				   }
                }
                else if (param == MatOfInt.class) {
@@ -472,6 +474,11 @@ class CvInvoke {
                 if (out != null && !out.equals("")) {
                     Mat matParam = (Mat)method.invoke(matToUse, objects);
                     matParams.put(out, matParam);
+                    // Ninjar
+                    if (params.hasKey(out)) {
+                        MatManager.getInstance().setMat(params.getMap(out).getInt("matIndex"), matParam);
+                        Mat returnMat = (Mat)MatManager.getInstance().matAtIndex(params.getMap(out).getInt("matIndex"));
+                    }
                 }
                 else {
                     if (func.equals("release")) {
@@ -487,7 +494,7 @@ class CvInvoke {
 
             if (dstMatIndex >= 0) {
                 Mat dstMat = (Mat)objects[arrMatIndex];
-                MatManager.getInstance().setMat(dstMatIndex, dstMat);
+                MatManager.getInstance().setMat(dstMatIndex, dstMat); // Ninjar: 改retExcs才能生效
                 result = dstMatIndex;
                 dstMatIndex = -1;
                 arrMatIndex = -1;
