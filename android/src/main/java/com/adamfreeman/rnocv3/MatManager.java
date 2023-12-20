@@ -168,6 +168,7 @@ class MatManager {
         dMat = null;
     }
 
+    // Ninjar: 离谱的内存泄漏, remove导致所有序列错乱
     public static void deleteMatAtIndex(int matIndex) {
         Object mat = matAtIndex(matIndex);
         releaseMat(mat);
