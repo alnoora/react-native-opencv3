@@ -352,6 +352,10 @@
                MatWrapper *MW = [[MatWrapper alloc] init];
                MW.myMat = matParam;
                self.matParams[out] = MW;
+                // Ninjar
+                if ([params valueForKey:out] != nil) {
+                    [MatManager.sharedMgr setMat:[(NSNumber*)[[params valueForKey:out] valueForKey:@"matIndex"] intValue] matToSet:matParam];
+                }
            }
            else {
                if (matToUse.rows > 0 && [func isEqualToString:@"release"]) {

@@ -477,7 +477,6 @@ class CvInvoke {
                     // Ninjar
                     if (params.hasKey(out)) {
                         MatManager.getInstance().setMat(params.getMap(out).getInt("matIndex"), matParam);
-                        Mat returnMat = (Mat)MatManager.getInstance().matAtIndex(params.getMap(out).getInt("matIndex"));
                     }
                 }
                 else {
